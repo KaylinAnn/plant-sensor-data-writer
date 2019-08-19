@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const massive = require('massive')
 const sensor = require('i2c-seesaw-moisture-sensor')
 require("dotenv").config();
+const controller = require('./controller')
 
 const app = express();
 
@@ -30,6 +31,9 @@ massive(process.env.CONNECTION_STRING)
   .catch(error => {
     console.log("-------------- database issue", error);
   });
+
+app.get('/api/plantmoisture', controller.addMoisture)
+app.get('/api/planttemp', controller.addTemp)
 
 const PORT = 4001;
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
