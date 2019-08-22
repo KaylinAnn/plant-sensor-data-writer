@@ -28,7 +28,7 @@ function run() {
           return new Promise((resolve, reject) => {
             setTimeout(() => {
               resolve()
-            }, 30000)
+            }, 900000)
           })
         })
         .then(() => {
